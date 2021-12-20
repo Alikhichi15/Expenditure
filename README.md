@@ -1,4 +1,4 @@
-## Expenditure App
+#Expenditure App
  #Semester project with firebase
 
 ![1111](https://user-images.githubusercontent.com/92102583/143768686-8b338644-ee73-4a61-9412-9117cdec54dd.jpg)
