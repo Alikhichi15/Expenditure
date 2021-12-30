@@ -1,6 +1,16 @@
-# Expenditure App
- # Semester project with firebase
+# myapp
 
-![1111](https://user-images.githubusercontent.com/92102583/143768686-8b338644-ee73-4a61-9412-9117cdec54dd.jpg)
-![1112](https://user-images.githubusercontent.com/92102583/143768689-98ea486c-6e47-4734-8cd6-8f15dc84a699.jpg)
-![1113](https://user-images.githubusercontent.com/92102583/143768690-ae5ff73f-a2f6-4572-bcac-ce09929c20be.jpg)
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+
+For help getting started with Flutter, view our
+[online documentation](https://flutter.dev/docs), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.

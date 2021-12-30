@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/NavigatorBar.dart';
 // import 'package:myapp/Screens/HomeScreen.dart';
@@ -8,13 +11,9 @@ import 'package:myapp/widgets/new_Transaction.dart';
 import 'models/Transaction.dart';
 import 'widgets/chart.dart';
 
-void main() {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
-  // ]);
-  // Firebase.initializeApp();
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -25,7 +24,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primarySwatch: Colors.green,
+        // ignore: deprecated_member_use
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
         textTheme: ThemeData.light().textTheme.copyWith(
@@ -61,21 +61,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
-  final List<Transaction> _userTransaction = [
-    Transaction(
-      id: 't1',
-      title: 'New shose',
-      ammount: 69.53,
-      date: DateTime.now(),
-    ),
-    Transaction(
-        id: 't2',
-        title: 'Weekly Groseries',
-        ammount: 15.24,
-        date: DateTime.now()),
-    Transaction(
-        id: 't3', title: 'Stationary', ammount: 30.54, date: DateTime.now()),
-  ];
+  final List<Transaction> _userTransaction = [];
   bool _showChart = false;
 
   @override
@@ -161,7 +147,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 mediaQuery.padding.top -
                 75) *
             0.7,
-        child: Transaction_List(_userTransaction, _deleteTransaction));
+        child: Transaction_List());
     return Scaffold(
       drawer: Drawer(
         child: Column(
@@ -190,6 +176,7 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                   children: <Widget>[
                     Text('Show Chart'),
                     Switch.adaptive(
+                      // ignore: deprecated_member_use
                       activeColor: Theme.of(context).accentColor,
                       value: _showChart,
                       onChanged: (val) {
@@ -202,11 +189,11 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                 ),
               if (!isLandscape)
                 Container(
-                    height: (mediaQuery.size.height -
-                            appBar.preferredSize.height -
-                            mediaQuery.padding.top) *
-                        0.3,
-                    child: Chart(_recentTransaction)),
+                    // height: (mediaQuery.size.height -
+                    //         appBar.preferredSize.height -
+                    //         mediaQuery.padding.top) *
+                    //     0.3,
+                    child: Container()),
               if (!isLandscape) txListWidget,
               if (isLandscape)
                 _showChart
@@ -215,21 +202,21 @@ class _MyHomePageState extends State<MyHomePage> with WidgetsBindingObserver {
                                 appBar.preferredSize.height -
                                 mediaQuery.padding.top) *
                             0.7,
-                        child: Chart(_recentTransaction))
+                        child: Container())
                     : txListWidget,
             ]),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: Platform.isIOS
-      //     ? Container()
-      //     : FloatingActionButton(
-      //         backgroundColor: Colors.amber,
-      //         onPressed: () => _startAddNewTransaction(context),
-      //         child: Icon(
-      //           Icons.add,
-      //           color: Colors.black,
-      //         ),
-      //       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: Platform.isIOS
+          ? Container()
+          : FloatingActionButton(
+              backgroundColor: Colors.green,
+              onPressed: () => _startAddNewTransaction(context),
+              child: Icon(
+                Icons.add,
+                color: Colors.white,
+              ),
+            ),
     );
   }
 }
